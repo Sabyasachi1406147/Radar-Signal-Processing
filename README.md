@@ -61,8 +61,8 @@ cd radar-signal-processing
 ### 1. Range Profiles
 Visualizes the range profile at 3 stages:
 - Raw
-- DC substraction + IQ balancing
-- DC substraction + IQ balancing + MTI
+- Range Gating + DC substraction + IQ balancing
+- Range Gating + DC substraction + IQ balancing + MTI
 
 ![Range Profiles](results/RangeProfiles.png)
 
@@ -71,8 +71,8 @@ Visualizes the range profile at 3 stages:
 ### 2. Range-Doppler Maps
 Compares temporal Doppler content:
 - Raw
-- DC substraction + IQ balancing
-- DC substraction + IQ balancing + MTI
+- Range Gating + DC substraction + IQ balancing
+- Range Gating + DC substraction + IQ balancing + MTI
 
 ![Range-Doppler Example](results/RangeDoppler_Speed.mp4)
 
@@ -84,8 +84,8 @@ Compares temporal Doppler content:
 Time-frequency signature from the median range bin:
 
 - Raw
-- DC substraction + IQ balancing
-- DC substraction + IQ balancing + MTI
+- Range Gating + DC substraction + IQ balancing
+- Range Gating + DC substraction + IQ balancing + MTI
 
 ![Spectrogram Comparison](results/SpectrogramComparison.png)
 
