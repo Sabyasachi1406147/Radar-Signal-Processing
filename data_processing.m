@@ -82,7 +82,7 @@ RMin = 0.7;            % Minimum range (m) for Doppler processing
 RMax = 1.3;            % Maximum range (m) for Doppler processing
 exclude_bins = 5;      % Exclude initial range bins
 rd_window_size = 128;  % Doppler FFT window (# of chirps)
-shift          = 64;   % Sliding window shift (# of chirps)
+shift          = 74;   % Sliding window shift (# of chirps)
 NFFTVel        = 256;  % Doppler FFT size
 
 % Generate Range-Doppler Maps
