@@ -3,7 +3,7 @@ function displayRDMVideo(RD_map_raw, vVel_raw, vRange_raw, ...
                          RD_map_mti, vVel_mti, vRange_mti, ...
                          outputFolder)
 % displayRDMVideo - Animate and display three Range-Doppler maps in a full-screen figure,
-% and optionally save a 2×-speed video to disk if 'outputFolder' is provided.
+% and optionally save a 3×-speed video to disk if 'outputFolder' is provided.
 
 if nargin < 10
     outputFolder = ''; % no folder specified, won't save
@@ -12,24 +12,16 @@ end
 % Determine the number of frames (assumed equal for all RDM inputs)
 numFrames = size(RD_map_raw, 3);
 
-%% 1) Create a full-screen figure
+%% 1) Create a figure and set reduced resolution
 hFig = figure('Name','Range-Doppler Video','NumberTitle','off', ...
-              'Units','normalized','OuterPosition',[0 0 1 1]);  % Full screen
+              'Units','pixels','Position',[100, 100, 960, 320]);  % Smaller size for 3 subplots
 
-% Force a draw so MATLAB sizes the figure
-drawnow;
-
-% Now lock that size so it stays consistent throughout the video
-% (We get the actual pixel size after it's made full-screen.)
-set(hFig, 'Units','pixels');
-pos = get(hFig,'Position');  
-% Optional: disable user resizing
-set(hFig, 'Resize','off', 'Position',pos);
+set(hFig, 'Resize','off');  % Disable resizing
 
 %% 2) Subplot 1: Raw Range-Doppler Map
 subplot(1,3,1);
 h1 = imagesc(vVel_raw, vRange_raw, 20*log10(abs(RD_map_raw(:,:,1))));
-xlim([min(vVel_mti)/1.5, max(vVel_mti)/1.5]); axis manual;  % Lock axis scale
+xlim([min(vVel_mti)/1.5, max(vVel_mti)/1.5]); axis manual;
 xlabel('Velocity (m/s)'); ylabel('Range (m)');
 title('1) Raw RDM');
 colorbar; caxis([-10 60]); colormap jet;
@@ -52,12 +44,12 @@ colorbar; caxis([-10 60]); colormap jet;
 
 sgtitle('Range-Doppler Video');
 
-%% 5) Prepare the video writer (2× speed)
-videoFrameRate = 30;            % e.g., 20 fps
-videoFilename  = fullfile(outputFolder, 'RangeDoppler_3xSpeed.avi');
+%% 5) Prepare the video writer (3× speed + smaller size)
+videoFrameRate = 40;  % 4× speed
+videoFilename  = fullfile(outputFolder, 'RangeDoppler_Speed.mp4');
 
 if ~isempty(outputFolder)
-    vidObj = VideoWriter(videoFilename);
+    vidObj = VideoWriter(videoFilename, 'MPEG-4');  % H.264 compressed
     vidObj.FrameRate = videoFrameRate;
     open(vidObj);
 end
@@ -71,7 +63,7 @@ for t = 1:numFrames
     sgtitle(sprintf('Range-Doppler Frame: %d / %d', t, numFrames));
     drawnow;
     
-    % Capture & write frame if we're saving the video
+    % Capture & write frame if saving video
     if ~isempty(outputFolder)
         frame = getframe(hFig);
         writeVideo(vidObj, frame);

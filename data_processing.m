@@ -9,7 +9,7 @@ if ~exist(outputFolder, 'dir')
 end
 
 %% Add Path to Functions Folder
-addpath('C:\Users\sb3682.ECE-2V7QHQ3\My Stuff\Radar-Signal-Processing\FMCW-Radar_for-HAR\functions');
+addpath('C:\Users\sb3682.ECE-2V7QHQ3\My Stuff\Radar-Signal-Processing\Radar-Signal-Processing\functions');
 
 %% Load Data
 load('class_01_Ali_1.mat');  % Loads variable 'data_cut' [256 x 26052]
@@ -69,7 +69,6 @@ plotRangeProfileMap(RPExt_mti, vRangeExt, ...
 
 %% SAVE the full-screen Range Profile figure
 saveas(hFigRangeProfiles, fullfile(outputFolder, 'RangeProfiles.png'));
-savefig(hFigRangeProfiles, fullfile(outputFolder, 'RangeProfiles.fig'));
 
 %% 2) RANGE-DOPPLER MAPPING
 fc    = (params.f_start + params.f_stop) / 2;   % Center frequency (Hz)
@@ -83,7 +82,7 @@ RMin = 0.7;            % Minimum range (m) for Doppler processing
 RMax = 1.3;            % Maximum range (m) for Doppler processing
 exclude_bins = 5;      % Exclude initial range bins
 rd_window_size = 128;  % Doppler FFT window (# of chirps)
-shift          = 74;   % Sliding window shift (# of chirps)
+shift          = 28;   % Sliding window shift (# of chirps)
 NFFTVel        = 256;  % Doppler FFT size
 
 % Generate Range-Doppler Maps
@@ -136,4 +135,3 @@ sgtitle('Spectrogram Comparison for Different Processing Stages');
 
 %% SAVE the full-screen Spectrogram figure
 saveas(hFigSpectrograms, fullfile(outputFolder, 'SpectrogramComparison.png'));
-savefig(hFigSpectrograms, fullfile(outputFolder, 'SpectrogramComparison.fig'));
