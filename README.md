@@ -76,7 +76,7 @@ Compares temporal Doppler content:
 
 ![Range-Doppler Example](results/RangeDoppler_Example.png)
 
-➡️ See the full video: `results/RangeDoppler_2xSpeed.avi`
+➡️ See the full video: `results/RangeDoppler_Speed.mp4`
 
 ---
 
