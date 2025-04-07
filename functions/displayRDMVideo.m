@@ -14,7 +14,7 @@ numFrames = size(RD_map_raw, 3);
 
 %% 1) Create a figure and set reduced resolution
 hFig = figure('Name','Range-Doppler Video','NumberTitle','off', ...
-              'Units','pixels','Position',[100, 100, 960, 320]);  % Smaller size for 3 subplots
+              'Units','pixels','Position',[100, 100, 900, 300]);  % Smaller size for 3 subplots
 
 set(hFig, 'Resize','off');  % Disable resizing
 
@@ -44,7 +44,7 @@ colorbar; caxis([-10 60]); colormap jet;
 
 sgtitle('Range-Doppler Video');
 
-%% 5) Prepare the video writer (3× speed + smaller size)
+%% 5) Prepare the video writer (4× speed + smaller size)
 videoFrameRate = 40;  % 4× speed
 videoFilename  = fullfile(outputFolder, 'RangeDoppler_Speed.mp4');
 
