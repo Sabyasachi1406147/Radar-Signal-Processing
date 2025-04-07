@@ -74,7 +74,7 @@ Compares temporal Doppler content:
 - DC substraction + IQ balancing
 - DC substraction + IQ balancing + MTI
 
-![Range-Doppler Example](results/RangeDoppler_Example.png)
+![Range-Doppler Example](results/RangeDoppler_Speed.mp4)
 
 ➡️ See the full video: `results/RangeDoppler_Speed.mp4`
 
